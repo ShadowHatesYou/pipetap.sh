@@ -11,5 +11,4 @@ fi
 if [ -z "$TCPDUMPFILTER" ]; then
         TCPDUMPFILTER="ip host not $(dig +short myip.opendns.com @resolver1.opendns.com) and not tcp port 22"
 fi
-ssh -A -C $1 tcpdump -s 0 -i $2 -w - $TCPDUMPFILTER | sudo wireshark -k -i -
-
+ssh -C $1 tcpdump -s 0 -i $2 -w - $TCPDUMPFILTER | wireshark -k -i -
